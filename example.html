@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banking System</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background-color: rgb(163, 131, 147);
+        }
+
+        .container {
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+
+        input {
+            width: 85%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgb(192, 156, 156);
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #a5b0bd;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🏦 Banking System</h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <br>
+
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+    <button onclick="checkBalance()">Check</button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+    let balance = 1000;
+
+    function deposit() {
+        let amt = Number(document.getElementById("amount").value);
+
+        if (amt > 0) {
+            balance += amt;
+            document.getElementById("message").innerText =
+                "Deposited Amount: ₹" + amt;
+        } else {
+            document.getElementById("message").innerText = "Enter valid amount!";
+        }
+    }
+
+    function withdraw() {
+        let amt = Number(document.getElementById("amount").value);
+
+        if (amt <= 0) {
+            document.getElementById("message").innerText = "Enter valid amount!";
+            return;
+        }
+
+        if (amt <= balance) {
+            balance -= amt;
+
+            // 🔥 Only withdrawn amount shown
+            document.getElementById("message").innerText =
+                "Withdrawn Amount: ₹" + amt;
+
+        } else {
+            document.getElementById("message").innerText = "Insufficient Balance!";
+        }
+    }
+
+    function checkBalance() {
+    document.getElementById("message").innerText =
+        "Current Balance: ₹" + balance;
+}
+</script>
+
+</body>
+</html>
